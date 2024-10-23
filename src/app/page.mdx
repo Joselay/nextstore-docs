@@ -1,0 +1,43 @@
+import { Guides } from '@/components/Guides'
+import { Resources } from '@/components/Resources'
+import { HeroPattern } from '@/components/HeroPattern'
+
+export const metadata = {
+  title: 'API Documentation',
+  description:
+    'Learn everything there is to know about the NextStore API and integrate NextStore into your product.',
+}
+
+export const sections = [
+  { title: 'Guides', id: 'guides' },
+  { title: 'Resources', id: 'resources' },
+]
+
+<HeroPattern />
+
+# Introduction
+
+NextStore is a flexible eCommerce platform built with Next.js to provide a fast, scalable, and modern shopping experience. The platform includes a frontend (store) for customers to browse and purchase products, and an admin panel for store owners to manage their inventory, orders, and settings. The platform integrates with Stripe for payments and Clerk for user authentication. {{ className: 'lead' }}
+
+<div className="not-prose mb-16 mt-6 flex gap-3">
+  <Button href="/quickstart" arrow="right">
+    <>Quickstart</>
+  </Button>
+  <Button href="/sdks" variant="outline">
+    <>Explore SDKs</>
+  </Button>
+</div>
+
+## Getting started {{ anchor: false }}
+
+To get started with **NextStore**, first log in to the admin panel at [localhost:3001](#). If you don't have a store yet, you'll be prompted to create one. After setting up your store, you can manage products, categories, orders, and more using our easy-to-use admin features. Once your store is ready, it will be live and accessible on the frontend at [localhost:3000](#), where customers can browse and make purchases. {{ className: 'lead' }}
+
+<div className="not-prose">
+  <Button href="/sdks" variant="text" arrow="right">
+    <>Get your API key</>
+  </Button>
+</div>
+
+<Guides />
+
+<Resources />

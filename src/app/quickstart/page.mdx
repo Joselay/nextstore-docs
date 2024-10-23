@@ -1,0 +1,136 @@
+export const metadata = {
+  title: 'Quickstart',
+  description:
+    'This guide will help you get NextStore set up locally and ready to use.',
+}
+
+# Quickstart
+
+This guide will help you get NextStore set up locally and ready to use. Follow these steps to install the project and start using it. {{ className: 'lead' }}
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed on your machine:
+
+- [Node.js](https://nodejs.org/) (v14 or higher)
+- [npm](https://www.npmjs.com/) (Node package manager, comes with Node.js)
+- A code editor like [Visual Studio Code](https://code.visualstudio.com/)
+
+<Note>
+  Before you can make requests to the NextStore API, you will need to grab your
+  API key from your admin dashboard. You can find it under [Settings &raquo;
+  API](#).
+</Note>
+
+## Installation Steps
+
+1. **Clone the repository:**
+
+   Open your terminal and run the following command to clone the NextStore repository:
+
+   ```bash
+   git clone https://github.com/Joselay/ecommerce-store-sa.git
+   ```
+
+2. **Navigate to the project directory:**
+
+   ```bash
+   cd nextstore
+   ```
+
+3. **Install dependencies:**
+
+   Run the following command to install the necessary dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. **Start the frontend and API server:**
+
+   In one terminal window, start the frontend:
+
+   ```bash
+   npm run dev
+   ```
+
+   In another terminal window, navigate to the API directory and start the API server:
+
+   ```bash
+   cd api
+   npm run dev
+   ```
+
+   This will start the frontend on localhost:3000 and the API on localhost:3001.
+
+5. **Access the application:**
+
+   Open your web browser and navigate to view the frontend of NextStore.
+
+   ```bash
+   http://localhost:3000
+   ```
+
+   The admin panel can be accessed at
+
+   ```bash
+   http://localhost:3001
+   ```
+
+   to view the frontend of NextStore. The admin panel can be accessed at http://localhost:3001.
+
+<div className="not-prose">
+  <Button href="/sdks" variant="text" arrow="right">
+    <>Check out our list of first-party SDKs</>
+  </Button>
+</div>
+
+## Making your first API request
+
+After picking your preferred client, you are ready to make your first call to the Protocol API. Below, you can see how to send a GET request to the Conversations endpoint to get a list of all your conversations. In the cURL example, results are limited to ten conversations, the default page length for each client.
+
+<CodeGroup tag="GET" label="/v1/conversations">
+
+```bash {{ title: 'cURL' }}
+curl -G https://api.protocol.chat/v1/conversations \
+  -H "Authorization: Bearer {token}" \
+  -d limit=10
+```
+
+```js
+import ApiClient from '@example/protocol-api'
+
+const client = new ApiClient(token)
+
+await client.conversations.list()
+```
+
+```python
+from protocol_api import ApiClient
+
+client = ApiClient(token)
+
+client.conversations.list()
+```
+
+```php
+$client = new \Protocol\ApiClient($token);
+
+$client->conversations->list();
+```
+
+</CodeGroup>
+
+<div className="not-prose">
+  <Button href="/conversations" variant="text" arrow="right">
+    <>Read the docs for the Conversations endpoint</>
+  </Button>
+</div>
+
+## What's next?
+
+Great, you're now set up with an API client and have made your first request to the API. Here are a few links that might be handy as you venture further into the Protocol API:
+
+- [Grab your API key from the Protocol dashboard](#)
+- [Check out the Conversations endpoint](/conversations)
+- [Learn about the different error messages in Protocol](/errors)
