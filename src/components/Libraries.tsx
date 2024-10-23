@@ -2,47 +2,39 @@ import Image from 'next/image'
 
 import { Button } from '@/components/Button'
 import { Heading } from '@/components/Heading'
-import logoGo from '@/images/logos/go.svg'
 import logoNode from '@/images/logos/node.svg'
-import logoPhp from '@/images/logos/php.svg'
-import logoPython from '@/images/logos/python.svg'
-import logoRuby from '@/images/logos/ruby.svg'
+import logoNext from '@/images/logos/next.svg'
+import logoReact from '@/images/logos/react.svg'
+import logoBun from '@/images/logos/bun.svg'
 
 const libraries = [
   {
-    href: '#',
-    name: 'PHP',
+    href: 'https://nodejs.org/',
+    name: 'Node',
     description:
-      'A popular general-purpose scripting language that is especially suited to web development.',
-    logo: logoPhp,
-  },
-  {
-    href: '#',
-    name: 'Ruby',
-    description:
-      'A dynamic, open source programming language with a focus on simplicity and productivity.',
-    logo: logoRuby,
-  },
-  {
-    href: '#',
-    name: 'Node.js',
-    description:
-      'Node.js® is an open-source, cross-platform JavaScript runtime environment.',
+      'A popular JavaScript runtime built on Chrome’s V8 JavaScript engine, designed for building scalable network applications and server-side scripting.',
     logo: logoNode,
   },
   {
-    href: '#',
-    name: 'Python',
+    href: 'https://nextjs.org/',
+    name: 'Next.js',
     description:
-      'Python is a programming language that lets you work quickly and integrate systems more effectively.',
-    logo: logoPython,
+      'A powerful React-based framework for building fast, scalable web applications with server-side rendering, static site generation, and API routes.',
+    logo: logoNext,
   },
   {
-    href: '#',
-    name: 'Go',
+    href: 'https://react.dev/',
+    name: 'React',
     description:
-      'An open-source programming language supported by Google with built-in concurrency.',
-    logo: logoGo,
+      'A JavaScript library for building user interfaces, known for its component-based architecture and fast rendering using a virtual DOM.',
+    logo: logoReact,
+  },
+  {
+    href: 'https://bun.sh/',
+    name: 'Bun',
+    description:
+      'A modern JavaScript runtime that is fast and efficient, focusing on speed and performance for both server-side and client-side applications.',
+    logo: logoBun,
   },
 ]
 

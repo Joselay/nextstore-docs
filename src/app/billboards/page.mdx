@@ -1,0 +1,387 @@
+export const metadata = {
+  title: 'billboards',
+  description:
+    'On this page, we’ll dive into the different contact endpoints you can use to manage billboards programmatically.',
+}
+
+# Billboards
+
+As the name suggests, billboards are a core part of nextstore — the very reason nextstore exists is so you can have secure conversations with your billboards. On this page, we'll dive into the different contact endpoints you can use to manage billboards programmatically. We'll look at how to query, create, update, and delete billboards. {{ className: 'lead' }}
+
+## The contact model
+
+The contact model contains all the information about your billboards, such as their store, and image. It also contains a reference to the conversation between you and the contact and information about when they were last active on nextstore.
+
+### Properties
+
+<Properties>
+  <Property name="id" type="string">
+    Unique identifier for the contact.
+  </Property>
+  <Property name="storeId" type="string">
+    The username for the contact.
+  </Property>
+  <Property name="label" type="string">
+    The phone number for the contact.
+  </Property>
+  <Property name="imageUrl" type="string">
+    The avatar image URL for the contact.
+  </Property>
+  <Property name="created_at" type="timestamp">
+    Timestamp of when the contact was created.
+  </Property>
+  <Property name="updated_at" type="timestamp">
+    Timestamp of when the contact was created.
+  </Property>
+</Properties>
+
+---
+
+## List all billboards {{ tag: 'GET', label: '/:billboardsId' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to retrieve a paginated list of all your billboards. By default, a maximum of ten billboards are shown per page.
+
+    ### Optional attributes
+
+    <Properties>
+      <Property name="limit" type="integer">
+        Limit the number of billboards returned.
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/:billboardsId">
+
+    ```bash {{ title: 'cURL' }}
+    curl -G https://api.nextstore.chat/:billboardsId \
+      -H "Authorization: Bearer {token}" \
+      -d active=true \
+      -d limit=10
+    ```
+
+    ```js
+    import ApiClient from '@example/nextstore-api'
+
+    const client = new ApiClient(token)
+
+    await client.billboards.list()
+    ```
+
+    ```python
+    from nextstore_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.billboards.list()
+    ```
+
+    ```php
+    $client = new \nextstore\ApiClient($token);
+
+    $client->billboards->list();
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "has_more": false,
+      "data": [
+        {
+          "id": "WAz8eIbvDR60rouK",
+          "username": "FrankMcCallister",
+          "phone_number": "1-800-759-3000",
+          "avatar_url": "https://assets.nextstore.chat/avatars/frank.jpg",
+          "display_name": null,
+          "conversation_id": "xgQQXg3hrtjh7AvZ",
+          "last_active_at": 705103200,
+          "created_at": 692233200
+        },
+        {
+          "id": "hSIhXBhNe8X1d8Et"
+          // ...
+        }
+      ]
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Create a contact {{ tag: 'POST', label: '/:billboardsId' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to add a new contact to your contact list in nextstore. To add a contact, you must provide their nextstore username and phone number.
+
+    ### Required attributes
+
+    <Properties>
+      <Property name="storeId" type="string">
+        The storeId for the store.
+      </Property>
+      <Property name="label" type="string">
+        The label for the category.
+      </Property>
+      <Property name="imageUrl" type="string">
+        The image for the category.
+      </Property>
+    </Properties>
+
+    ### Optional attributes
+
+    <Properties>
+      <Property name="imageUrl" type="string">
+        The image URL for the contact.
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="POST" label="/:billboardsId">
+
+    ```bash {{ title: 'cURL' }}
+    curl https://api.nextstore.chat/:billboardsId \
+      -H "Authorization: Bearer {token}" \
+      -d username="FrankMcCallister" \
+      -d phone_number="1-800-759-3000" \
+      -d avatar_url="https://assets.nextstore.chat/avatars/frank.jpg"
+    ```
+
+    ```js
+    import ApiClient from '@example/nextstore-api'
+
+    const client = new ApiClient(token)
+
+    await client.billboards.create({
+      username: 'FrankMcCallister',
+      phone_number: '1-800-759-3000',
+      avatar_url: 'https://assets.nextstore.chat/avatars/frank.jpg',
+    })
+    ```
+
+    ```python
+    from nextstore_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.billboards.create(
+      username="FrankMcCallister",
+      phone_number="1-800-759-3000",
+      avatar_url="https://assets.nextstore.chat/avatars/frank.jpg",
+    )
+    ```
+
+    ```php
+    $client = new \nextstore\ApiClient($token);
+
+    $client->billboards->create([
+      'username' => 'FrankMcCallister',
+      'phone_number' => '1-800-759-3000',
+      'avatar_url' => 'https://assets.nextstore.chat/avatars/frank.jpg',
+    ]);
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "id": "WAz8eIbvDR60rouK",
+      "username": "FrankMcCallister",
+      "phone_number": "1-800-759-3000",
+      "avatar_url": "https://assets.nextstore.chat/avatars/frank.jpg",
+      "display_name": null,
+      "conversation_id": "xgQQXg3hrtjh7AvZ",
+      "last_active_at": null,
+      "created_at": 692233200
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Retrieve a contact {{ tag: 'GET', label: '/:billboardsId' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to retrieve a contact by providing their nextstore id. Refer to [the list](#the-contact-model) at the top of this page to see which properties are included with contact objects.
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/:billboardsId/WAz8eIbvDR60rouK">
+
+    ```bash {{ title: 'cURL' }}
+    curl https://api.nextstore.chat/:billboardsId/WAz8eIbvDR60rouK \
+      -H "Authorization: Bearer {token}"
+    ```
+
+    ```js
+    import ApiClient from '@example/nextstore-api'
+
+    const client = new ApiClient(token)
+
+    await client.billboards.get('WAz8eIbvDR60rouK')
+    ```
+
+    ```python
+    from nextstore_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.billboards.get("WAz8eIbvDR60rouK")
+    ```
+
+    ```php
+    $client = new \nextstore\ApiClient($token);
+
+    $client->billboards->get('WAz8eIbvDR60rouK');
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "id": "WAz8eIbvDR60rouK",
+      "username": "FrankMcCallister",
+      "phone_number": "1-800-759-3000",
+      "avatar_url": "https://assets.nextstore.chat/avatars/frank.jpg",
+      "display_name": null,
+      "conversation_id": "xgQQXg3hrtjh7AvZ",
+      "last_active_at": 705103200,
+      "created_at": 692233200
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Update a contact {{ tag: 'PUT', label: '/:billboardsId' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to perform an update on a contact. Currently, the only attribute that can be updated on billboards is the `display_name` attribute which controls how a contact appears in your contact list in nextstore.
+
+    ### Optional attributes
+
+    <Properties>
+      <Property name="display_name" type="string">
+        The contact display name in the contact list. By default, this is just the username.
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="PUT" label="/:billboardsId/WAz8eIbvDR60rouK">
+
+    ```bash {{ title: 'cURL' }}
+    curl -X PUT https://api.nextstore.chat/:billboardsId/WAz8eIbvDR60rouK \
+      -H "Authorization: Bearer {token}" \
+      -d display_name="UncleFrank"
+    ```
+
+    ```js
+    import ApiClient from '@example/nextstore-api'
+
+    const client = new ApiClient(token)
+
+    await client.billboards.update('WAz8eIbvDR60rouK', {
+        display_name: 'UncleFrank',
+    })
+    ```
+
+    ```python
+    from nextstore_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.billboards.update("WAz8eIbvDR60rouK", display_name="UncleFrank")
+    ```
+
+    ```php
+    $client = new \nextstore\ApiClient($token);
+
+    $client->billboards->update('WAz8eIbvDR60rouK', [
+      'display_name' => 'UncleFrank',
+    ]);
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "id": "WAz8eIbvDR60rouK",
+      "username": "FrankMcCallister",
+      "phone_number": "1-800-759-3000",
+      "avatar_url": "https://assets.nextstore.chat/avatars/frank.jpg",
+      "display_name": "UncleFrank",
+      "conversation_id": "xgQQXg3hrtjh7AvZ",
+      "last_active_at": 705103200,
+      "created_at": 692233200
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Delete a contact {{ tag: 'DELETE', label: '/:billboardsId' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to delete billboards from your contact list in nextstore. Note: This will also delete your conversation with the given contact.
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="DELETE" label="/:billboardsId/WAz8eIbvDR60rouK">
+
+    ```bash {{ title: 'cURL' }}
+    curl -X DELETE https://api.nextstore.chat/:billboardsId/WAz8eIbvDR60rouK \
+      -H "Authorization: Bearer {token}"
+    ```
+
+    ```js
+    import ApiClient from '@example/nextstore-api'
+
+    const client = new ApiClient(token)
+
+    await client.billboards.delete('WAz8eIbvDR60rouK')
+    ```
+
+    ```python
+    from nextstore_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.billboards.delete("WAz8eIbvDR60rouK")
+    ```
+
+    ```php
+    $client = new \nextstore\ApiClient($token);
+
+    $client->billboards->delete('WAz8eIbvDR60rouK');
+    ```
+
+    </CodeGroup>
+
+  </Col>
+</Row>

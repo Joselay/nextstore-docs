@@ -1,21 +1,21 @@
 export const metadata = {
   title: 'Pagination',
   description:
-    'In this guide, we will look at how to work with paginated responses when querying the Protocol API',
+    'In this guide, we will look at how to work with paginated responses when querying the NextStore API.',
 }
 
 # Pagination
 
-In this guide, we will look at how to work with paginated responses when querying the Protocol API. By default, all responses limit results to ten. However, you can go as high as 100 by adding a `limit` parameter to your requests. If you are using one of the official Protocol API client libraries, you don't need to worry about pagination, as it's all being taken care of behind the scenes. {{ className: 'lead' }}
+In this guide, we will look at how to work with paginated responses when querying the NextStore API. By default, all responses limit results to ten. However, you can go as high as 100 by adding a `limit` parameter to your requests. If you are using one of the official NextStore API client libraries, you don't need to worry about pagination, as it's all being taken care of behind the scenes. {{ className: 'lead' }}
 
-When an API response returns a list of objects, no matter the amount, pagination is supported. In paginated responses, objects are nested in a `data` attribute and have a `has_more` attribute that indicates whether you have reached the end of the last page. You can use the `starting_after` and `endding_before` query parameters to browse pages.
+When an API response returns a list of objects, pagination is supported. In paginated responses, objects are nested in a `data` attribute and have a `has_more` attribute that indicates whether you have reached the end of the last page. You can use the `starting_after` and `ending_before` query parameters to browse pages.
 
 ## Example using cursors
 
 <Row>
   <Col>
 
-    In this example, we request the page that starts after the conversation with id `s4WycXedwhQrEFuM`. As a result, we get a list of three conversations and can tell by the `has_more` attribute that we have reached the end of the resultset.
+    In this example, we request the page that starts after the item with ID `s4WycXedwhQrEFuM`. As a result, we get a list of three items and can tell by the `has_more` attribute that we have reached the end of the result set.
 
     <Properties>
       <Property name="starting_after" type="string">
@@ -33,7 +33,7 @@ When an API response returns a list of objects, no matter the amount, pagination
   <Col>
 
     ```bash {{ title: 'Manual pagination using cURL' }}
-    curl -G https://api.protocol.chat/v1/conversations \
+    curl -G https://api.yournextstore.com/v1/items \
       -H "Authorization: Bearer {token}" \
       -d starting_after="s4WycXedwhQrEFuM" \
       -d limit=10
@@ -45,15 +45,21 @@ When an API response returns a list of objects, no matter the amount, pagination
       "data": [
         {
           "id": "WAz8eIbvDR60rouK",
-          // ...
+          "name": "Item 1",
+          "price": 29.99,
+          // other item details...
         },
         {
-          "id": "hSIhXBhNe8X1d8Et"
-          // ...
+          "id": "hSIhXBhNe8X1d8Et",
+          "name": "Item 2",
+          "price": 19.99,
+          // other item details...
         },
         {
-          "id": "fbwYwpi9C2ybt6Yb"
-          // ...
+          "id": "fbwYwpi9C2ybt6Yb",
+          "name": "Item 3",
+          "price": 39.99,
+          // other item details...
         }
       ]
     }
