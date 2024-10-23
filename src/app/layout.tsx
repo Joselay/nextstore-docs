@@ -26,6 +26,7 @@ export default async function RootLayout({
       (await import(`./${filename}`)).sections,
     ]),
   )) as Array<[string, Array<Section>]>
+
   let allSections = Object.fromEntries(allSectionsEntries)
 
   return (
