@@ -100,7 +100,7 @@ In the example above, a conversation was `updated`, and the payload type is a `c
 
 ## Security
 
-To know for sure that a webhook was, in fact, sent by Protocol instead of a malicious actor, you can verify the request signature. Each webhook request contains a header named `x-protocol-signature`, and you can verify this signature by using your secret webhook key. The signature is an HMAC hash of the request payload hashed using your secret key. Here is an example of how to verify the signature in your app:
+To know for sure that a webhook was, in fact, sent by nextstore instead of a malicious actor, you can verify the request signature. Each webhook request contains a header named `x-nextstore-signature`, and you can verify this signature by using your secret webhook key. The signature is an HMAC hash of the request payload hashed using your secret key. Here is an example of how to verify the signature in your app:
 
 <CodeGroup title="Verifying a request">
 
@@ -144,4 +144,4 @@ if (hash_equals($hash, $signature)) {
 
 </CodeGroup>
 
-If your generated signature matches the `x-nextstore-signature` header, you can be sure that the request was truly coming from NextStore. It's essential to keep your secret webhook key safe — otherwise, you can no longer be sure that a given webhook was sent by Protocol. Don't commit your secret webhook key to GitHub!
+If your generated signature matches the `x-nextstore-signature` header, you can be sure that the request was truly coming from NextStore. It's essential to keep your secret webhook key safe — otherwise, you can no longer be sure that a given webhook was sent by nextstore. Don't commit your secret webhook key to GitHub!

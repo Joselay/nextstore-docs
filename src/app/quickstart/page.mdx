@@ -12,6 +12,7 @@ This guide will help you get NextStore set up locally and ready to use. Follow t
 
 Before you begin, ensure you have the following installed on your machine:
 
+- [Git](https://git-scm.com/) (Version control system)
 - [Node.js](https://nodejs.org/) (v14 or higher)
 - [npm](https://www.npmjs.com/) (Node package manager, comes with Node.js)
 - A code editor like [Visual Studio Code](https://code.visualstudio.com/)
@@ -24,85 +25,131 @@ Before you begin, ensure you have the following installed on your machine:
 
 ## Installation Steps
 
-1. **Clone the repository:**
+1.  **Clone the `nextstore-admin` repository:**
 
-   Open your terminal and run the following command to clone the NextStore repository:
+    Open your terminal and run the following command to clone the NextStore admin repository:
 
-   ```bash
-   git clone https://github.com/Joselay/nextstore.git
-   ```
+    ```bash
+    git clone https://github.com/Joselay/nextstore-admin.git
+    ```
 
-2. **Navigate to the project directory:**
+2.  **Navigate to the project directory:**
 
-   ```bash
-   cd nextstore
-   ```
+    ```bash
+    cd nextstore-admin
+    ```
 
-3. **Install dependencies:**
+3.  **Open the code in any text editor or IDE:**
 
-   Run the following command to install the necessary dependencies:
+    Open the code in your preferred text editor or IDE. We recommend using [Visual Studio Code](https://code.visualstudio.com/)
 
-   ```bash
-   npm install
-   ```
+4.  **Install dependencies:**
 
-4. **Start the frontend and API server:**
+    Run the following command to install the necessary dependencies:
 
-   In one terminal window, start the frontend:
+    ```bash
+    npm install
+    ```
 
-   ```bash
-   npm run dev
-   ```
+5.  **Create a `.env` file at the project root directory:**
 
-   In another terminal window, navigate to the API directory and start the API server:
+    In the root of your `nextstore-admin` project directory, create a new file named `.env`.
 
-5. **Clone the NextStore admin repository:**
+6.  **Paste the following into the `.env` file:**
 
-   Open your terminal and run the following command to clone the NextStore admin repository:
+    ```bash
+    STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
+    FRONTEND_STORE_URL=http://localhost:3000/
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+    CLERK_SECRET_KEY=your_clerk_secret_key
+    NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+    NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 
-   ```bash
-   git clone https://github.com/Joselay/nextstore-admin.git
-   ```
+    NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+    NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 
-6. **Navigate to the project directory:**
+    DATABASE_URL=your_postgresql_database_url
 
-   ```bash
-   cd nextstore-admin
-   ```
+    NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+    STRIPE_API_KEY=your_stripe_api_key
 
-7. **Install dependencies:**
+    ```
 
-   Run the following command to install the necessary dependencies:
+7.  **Start the frontend and API server:**
 
-   ```bash
-   npm install
-   ```
+    In one terminal window, start the frontend:
 
-8. **Start the frontend and API server:**
+    ```bash
+    npm run dev
+    ```
 
-   In one terminal window, start the frontend:
+    This will start the backend admin on localhost:3001 and the frontend on localhost:3000.
 
-   ```bash
-   npm run dev
-   ```
+8.  **Clone the `nextstore` repository:**
 
-   This will start the backend admin on localhost:3001 and the frontend on localhost:3000.
+    Open your terminal and run the following command to clone the NextStore repository:
 
-9. **Access the application:**
+    ```bash
+    git clone https://github.com/Joselay/nextstore.git
+    ```
 
-   Open your web browser and navigate to view the frontend of NextStore.
+9.  **Navigate to the project directory:**
 
-   ```bash
-   http://localhost:3000
-   ```
+    ```bash
+    cd nextstore
+    ```
 
-   The admin panel can be accessed at
+10. **Install dependencies:**
 
-   ```bash
-   http://localhost:3001
-   ```
+    Run the following command to install the necessary dependencies:
 
-   to view the frontend of NextStore. The admin panel can be accessed at http://localhost:3001.
+    ```bash
+    npm install
+    ```
+
+11. **Open the code in any text editor or IDE:**
+
+    Open the code in your preferred text editor or IDE. We recommend using [Visual Studio Code](https://code.visualstudio.com/)
+
+12. **Create a `.env` file at the project root directory:**
+
+    In the root of your `nextstore` project directory, create a new file named `.env`.
+
+13. **Paste the following into the `.env` file:**
+
+    ```bash
+    NEXT_PUBLIC_API_URL=http://localhost:3001/api/{storeId}
+    ```
+
+14. **Start the frontend and API server:**
+
+    In one terminal window, start the frontend:
+
+    ```bash
+    npm run dev
+    ```
+
+    In another terminal window, navigate to the API directory and start the API server:
+
+15. **Access the application:**
+
+   <Note>
+     Make sure to run `nextstore` on port `:3000` and `nextstore-admin` on port `:3001`.
+
+    </Note>
+    Open your web browser and navigate to view the frontend of NextStore.
+
+        ```bash
+        http://localhost:3000
+        ```
+
+        The admin panel can be accessed at
+
+        ```bash
+        http://localhost:3001
+        ```
+
+        to view the frontend of NextStore. The admin panel can be accessed at http://localhost:3001.
 
 <div className="not-prose">
   <Button href="/sdks" variant="text" arrow="right">
